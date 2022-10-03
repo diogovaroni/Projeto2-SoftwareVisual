@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 
 namespace WebAppRegistroVendas.Models
 {
@@ -14,31 +17,11 @@ namespace WebAppRegistroVendas.Models
 
         public List<Vendedor> ListarVendedores()
         {
-            //Criação dos objetos da classe 'Vendedor'
-            Vendedor vendedor = new Vendedor();
-            vendedor.Id = 1;
-            vendedor.Nome = "Diogo";
-            vendedor.Email = "diogo@gmail.com";
-            vendedor.BaseSalarial = 3000;
+            var caminhoArquivo = HostingEnvironment.MapPath(@"~\App_Data\Vendedores.json");
 
-            Vendedor vendedor2 = new Vendedor();
-            vendedor2.Id = 2;
-            vendedor2.Nome = "João";
-            vendedor2.Email = "joao@gmail.com";
-            vendedor2.BaseSalarial = 2500;
+            var json = File.ReadAllText(caminhoArquivo);
 
-            Vendedor vendedor3 = new Vendedor();
-            vendedor3.Id = 3;
-            vendedor3.Nome = "José";
-            vendedor3.Email = "jose@gmail.com";
-            vendedor3.BaseSalarial = 2400;
-
-
-            List<Vendedor> listaVendedores = new List<Vendedor>();
-            listaVendedores.Add(vendedor);
-            listaVendedores.Add(vendedor2);
-            listaVendedores.Add(vendedor3);
-
+            var listaVendedores = JsonConvert.DeserializeObject<List<Vendedor>>(json);
             return listaVendedores;
         }
     }
