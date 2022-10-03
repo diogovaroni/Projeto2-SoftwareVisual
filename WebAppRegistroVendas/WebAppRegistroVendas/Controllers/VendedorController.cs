@@ -19,9 +19,10 @@ namespace WebAppRegistroVendas.Controllers
         }
 
         // GET: api/Vendedor/5
-        public string Get(int id)
+        public Vendedor Get(int id)
         {
-            return "value";
+            Vendedor vendedor = new Vendedor();
+            return vendedor.ListarVendedores().Where(x => x.Id == id).FirstOrDefault();
         }
 
         // POST: api/Vendedor
