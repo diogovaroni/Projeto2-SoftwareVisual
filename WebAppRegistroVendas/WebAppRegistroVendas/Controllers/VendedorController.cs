@@ -28,11 +28,11 @@ namespace WebAppRegistroVendas.Controllers
         // POST: api/Vendedor
         public List<Vendedor> Post(Vendedor vendedor)
         {
-            List<Vendedor> listaVendedores = new List<Vendedor>();
-            listaVendedores.Add(vendedor);
-            return listaVendedores;
-
+            Vendedor _vendedor = new Vendedor();
+            _vendedor.Inserir(vendedor);
+            return _vendedor.ListarVendedores();
         }
+
 
         // PUT: api/Vendedor/5
         public void Put(int id, [FromBody]string value)
