@@ -6,12 +6,6 @@
     "BaseSalarial": 3000.0
   },
   {
-    "Id": 2,
-    "Nome": "João",
-    "Email": "joao@gmail.com",
-    "BaseSalarial": 2500.0
-  },
-  {
     "Id": 3,
     "Nome": "José",
     "Email": "jose@gmail.com",

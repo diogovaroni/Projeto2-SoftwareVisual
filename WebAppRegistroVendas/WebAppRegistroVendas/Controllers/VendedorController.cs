@@ -35,13 +35,17 @@ namespace WebAppRegistroVendas.Controllers
 
 
         // PUT: api/Vendedor/5
-        public void Put(int id, [FromBody]string value)
+        public Vendedor Put(int Id, [FromBody]Vendedor vendedor)
         {
+            Vendedor _vendedor = new Vendedor();
+            return _vendedor.Atualizar(Id, vendedor);
         }
 
         // DELETE: api/Vendedor/5
-        public void Delete(int id)
+        public void Delete(int Id)
         {
+            Vendedor _vendedor = new Vendedor();
+            _vendedor.Deletar(Id);
         }
     }
 }
