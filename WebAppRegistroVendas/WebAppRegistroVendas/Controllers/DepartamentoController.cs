@@ -18,37 +18,59 @@ namespace WebAppRegistroVendas.Controllers
             return departamento.ListarDepartamentos();
         }
 
-        // GET: api/Departamento/Id
-        public Departamento Get(int id)
+        // GET: api/Departamento/id (Com tratamento de exceção)
+        public IHttpActionResult Get(int id)
         {
-            Departamento departamento = new Departamento();
-            return departamento.ListarDepartamentos().Where(x => x.Id == id).FirstOrDefault();
+            Departamento d = new Departamento().ListarDepartamentos().Where(x => x.Id == id).FirstOrDefault();
+
+            if (d != null)
+            {
+                return ResponseMessage(Request.CreateResponse<Departamento>(HttpStatusCode.OK, d));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Departamento não cadastrado."));
+            }
         }
 
         // POST: api/Departamento
         public List<Departamento> Post(Departamento departamento)
         {
-            Departamento _departamento = new Departamento();
-            _departamento.Inserir(departamento);
-            return _departamento.ListarDepartamentos();
+            Departamento d = new Departamento();
+            d.Inserir(departamento);
+            return d.ListarDepartamentos();
         }
 
-
-
-
-        // PUT: api/Departamento/Id
-        public Departamento Put(int Id, [FromBody] Departamento departamento)
+        // PUT: api/Departamento/id (Com tratamento de exceção)
+        public IHttpActionResult Put(int id, [FromBody] Departamento departamento)
         {
-            Departamento _departamento = new Departamento();
-            return _departamento.Atualizar(Id, departamento);
+            Departamento d = new Departamento().ListarDepartamentos().Where(x => x.Id == id).FirstOrDefault();
+            if (d != null)
+            {
+                return ResponseMessage(Request.CreateResponse<Departamento>(HttpStatusCode.OK, d.Atualizar(id, departamento)));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Departamento não localizado para atualizar."));
+            }
         }
 
 
-        // DELETE: api/Departamento/Id
-        public void Delete(int Id)
+        // DELETE: api/Vendedor/id (Com tratamento de exceção)
+        public IHttpActionResult Delete(int id)
         {
-            Departamento _departamento = new Departamento();
-            _departamento.Deletar(Id);
+            Departamento d = new Departamento().ListarDepartamentos().Where(x => x.Id == id).FirstOrDefault();
+
+            if (d != null)
+            {
+                d.Deletar(id);
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Departamento não localizado para exclusão."));
+            }
         }
+
     }
 }

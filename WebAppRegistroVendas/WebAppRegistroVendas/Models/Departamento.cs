@@ -14,6 +14,7 @@ namespace WebAppRegistroVendas.Models
         public String Nome { get; set; }
 
 
+
         public List<Departamento> ListarDepartamentos()
         {
             var caminhoArquivo = HostingEnvironment.MapPath(@"~\App_Data\Departamentos.json");
@@ -34,17 +35,19 @@ namespace WebAppRegistroVendas.Models
             return true;
         }
 
+
+
         public Departamento Inserir(Departamento departamento)
         {
             var listaDepartamentos = this.ListarDepartamentos();
 
-            var maxId = listaDepartamentos.Max(Departamento => departamento.Id);
-            departamento.Id = maxId++;
             listaDepartamentos.Add(departamento);
 
             ReescreverArquivo(listaDepartamentos);
             return departamento;
         }
+
+
 
         public Departamento Atualizar(int Id, Departamento departamento)
         {
