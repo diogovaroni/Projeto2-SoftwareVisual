@@ -12,8 +12,11 @@ namespace WebAppRegistroVendas.Models
     {
         public int Id { get; set; }
         public String Nome { get; set; }
+        public String CPF { get; set; }
         public String Email { get; set; }
         public double BaseSalarial { get; set; }
+
+
 
         public List<Vendedor> ListarVendedores()
         {
@@ -39,20 +42,20 @@ namespace WebAppRegistroVendas.Models
         {
             var listaVendedores = this.ListarVendedores();
 
-            var maxId = listaVendedores.Max(Vendedor => vendedor.Id);
-            vendedor.Id = maxId + 1;
             listaVendedores.Add(vendedor);
 
             ReescreverArquivo(listaVendedores);
             return vendedor;
         }
 
+
+
         public Vendedor Atualizar(int Id, Vendedor vendedor)
         {
             var listaVendedores = this.ListarVendedores();
 
             var itemIndex = ListarVendedores().FindIndex(p => p.Id == Id);
-            if(itemIndex >= 0)
+            if (itemIndex >= 0)
             {
                 vendedor.Id = Id;
                 listaVendedores[itemIndex] = vendedor;

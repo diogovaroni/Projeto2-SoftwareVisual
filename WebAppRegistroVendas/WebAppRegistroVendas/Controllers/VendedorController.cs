@@ -18,34 +18,59 @@ namespace WebAppRegistroVendas.Controllers
             return vendedor.ListarVendedores();
         }
 
-        // GET: api/Vendedor/5
-        public Vendedor Get(int id)
+        // GET: api/Vendedor/id (Com tratamento de exceção)
+        public IHttpActionResult Get(int id)
         {
-            Vendedor vendedor = new Vendedor();
-            return vendedor.ListarVendedores().Where(x => x.Id == id).FirstOrDefault();
+            Vendedor v = new Vendedor().ListarVendedores().Where(x => x.Id == id).FirstOrDefault();
+
+            if (v != null)
+            {
+                return ResponseMessage(Request.CreateResponse<Vendedor>(HttpStatusCode.OK, v));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Vendedor não localizado."));
+            }
         }
 
         // POST: api/Vendedor
         public List<Vendedor> Post(Vendedor vendedor)
         {
-            Vendedor _vendedor = new Vendedor();
-            _vendedor.Inserir(vendedor);
-            return _vendedor.ListarVendedores();
+            Vendedor v = new Vendedor();
+            v.Inserir(vendedor);
+            return v.ListarVendedores();
         }
 
-
-        // PUT: api/Vendedor/5
-        public Vendedor Put(int Id, [FromBody]Vendedor vendedor)
+        // PUT: api/Vendedor/id (Com tratamento de exceção)
+        public IHttpActionResult Put(int id, [FromBody] Vendedor vendedor)
         {
-            Vendedor _vendedor = new Vendedor();
-            return _vendedor.Atualizar(Id, vendedor);
+            Vendedor v = new Vendedor().ListarVendedores().Where(x => x.Id == id).FirstOrDefault();
+            if (v != null)
+            {
+                return ResponseMessage(Request.CreateResponse<Vendedor>(HttpStatusCode.OK, v.Atualizar(id, vendedor)));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Vendedor não localizado para atualizar."));
+            }
         }
 
-        // DELETE: api/Vendedor/5
-        public void Delete(int Id)
+        // DELETE: api/Vendedor/id (Com tratamento de exceção)
+        public IHttpActionResult Delete(int id)
         {
-            Vendedor _vendedor = new Vendedor();
-            _vendedor.Deletar(Id);
+            Vendedor v = new Vendedor().ListarVendedores().Where(x => x.Id == id).FirstOrDefault();
+
+            if (v != null)
+            {
+                v.Deletar(id);
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Vendedor não localizado para exclusão."));
+            }
+
         }
+
     }
 }
