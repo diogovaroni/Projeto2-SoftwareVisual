@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Informática"
+  },
+  {
+    "Id": 2,
+    "Nome": "Celulares"
+  },
+  {
+    "Id": 3,
+    "Nome": "Decoração"
+  },
+  {
+    "Id": 4,
+    "Nome": "Vestuário"
+  },
+  {
+    "Id": 5,
+    "Nome": "Cama, Mesa & Banho"
+  }
+]

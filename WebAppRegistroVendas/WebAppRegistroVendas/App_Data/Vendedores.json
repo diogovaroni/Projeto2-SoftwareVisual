@@ -1,11 +1,5 @@
 [
   {
-    "Id": 1,
-    "Nome": "Diogo",
-    "Email": "diogo@gmail.com",
-    "BaseSalarial": 3000.0
-  },
-  {
     "Id": 3,
     "Nome": "José",
     "Email": "jose@gmail.com",
@@ -22,5 +16,11 @@
     "Nome": "Rafael",
     "Email": "rafael@gmail.com",
     "BaseSalarial": 2700.0
+  },
+  {
+    "Id": 3,
+    "Nome": "Diogo",
+    "Email": "diogo@gmail.com",
+    "BaseSalarial": 2400.0
   }
 ]
