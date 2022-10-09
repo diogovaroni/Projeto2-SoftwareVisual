@@ -17,15 +17,6 @@ namespace WebAppRegistroVendas.Models
         public double BaseSalarial { get; set; }
 
 
-        public int GetId()
-        {
-            return Id;
-        }
-
-        public String GetCPF()
-        {
-            return CPF;
-        }
 
         public List<Vendedor> ListarVendedores()
         {
