@@ -48,14 +48,14 @@ namespace WebAppRegistroVendas.Models
             var itemIndex = listaVendedores.FindIndex(p => p.Id == venda.IdVendedor);
             if (itemIndex < 0)
             {
-                return null;
+                throw new Exception("Id vendedor não cadastrado.");
             }
 
             var listaDepartamentos = d.ListarDepartamentos();            
             itemIndex = listaDepartamentos.FindIndex(p => p.Id == venda.IdDepartamento);
             if (itemIndex < 0)
             {
-                return null;
+                throw new Exception("Id departamento não cadastrado.");
             }
 
             var listaVendas = this.ListarVendas();

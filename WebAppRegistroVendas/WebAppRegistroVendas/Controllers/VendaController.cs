@@ -40,29 +40,36 @@ namespace WebAppRegistroVendas.Controllers
             Venda v = new Venda();
             var listaVendas = v.ListarVendas();
             var itemIndex = listaVendas.FindIndex(p => p.Id == venda.Id);
-            if (itemIndex < 0)
+            try
             {
-                return ResponseMessage(Request.CreateResponse<Venda>(HttpStatusCode.OK, v.Inserir(venda)));
+                if (itemIndex < 0)
+                {
+                    return ResponseMessage(Request.CreateResponse<Venda>(HttpStatusCode.OK, v.Inserir(venda)));
+                }
+                else
+                {
+                    return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Id já cadastrado em outra venda."));
+                }
             }
-            else
+            catch (Exception error)
             {
-                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Id já cadastrado em outra venda."));
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, error.Message));
             }
-            
         }
+    
 
         // PUT: api/Venda/id (Com tratamento de exceção)
         public IHttpActionResult Put(int id, [FromBody] Venda venda)
         {
-            Venda v = new Venda().ListarVendas().Where(x => x.Id == id).FirstOrDefault();
-            if (v != null)
-            {
-                return ResponseMessage(Request.CreateResponse<Venda>(HttpStatusCode.OK, v.Atualizar(id, venda)));
-            }
-            else
-            {
-                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Venda não localizado para atualizar."));
-            }
+            Venda v = new Venda().ListarVendas().Where(x => x.Id == id).FirstOrDefault();            
+                if (v != null)
+                {
+                    return ResponseMessage(Request.CreateResponse<Venda>(HttpStatusCode.OK, v.Atualizar(id, venda)));
+                }
+                else
+                {
+                    return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Venda não localizado para atualizar."));
+                }            
         }
 
         // DELETE: api/Venda/id (Com tratamento de exceção)
