@@ -35,11 +35,20 @@ namespace WebAppRegistroVendas.Controllers
         }
 
         // POST: api/Venda
-        public List<Venda> Post(Venda venda)
+        public IHttpActionResult Post([FromBody] Venda venda)
         {
             Venda v = new Venda();
-            v.Inserir(venda);
-            return v.ListarVendas();
+            var listaVendas = v.ListarVendas();
+            var itemIndex = listaVendas.FindIndex(p => p.Id == venda.Id);
+            if (itemIndex < 0)
+            {
+                return ResponseMessage(Request.CreateResponse<Venda>(HttpStatusCode.OK, v.Inserir(venda)));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Id já cadastrado em outra venda."));
+            }
+            
         }
 
         // PUT: api/Venda/id (Com tratamento de exceção)

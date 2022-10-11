@@ -47,7 +47,7 @@ namespace WebAppRegistroVendas.Models
             var listaVendedores = v.ListarVendedores();            
             var itemIndex = listaVendedores.FindIndex(p => p.Id == venda.IdVendedor);
             if (itemIndex < 0)
-            {                
+            {
                 return null;
             }
 

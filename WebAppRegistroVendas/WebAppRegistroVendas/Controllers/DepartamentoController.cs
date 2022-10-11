@@ -34,12 +34,21 @@ namespace WebAppRegistroVendas.Controllers
         }
 
         // POST: api/Departamento
-        public List<Departamento> Post(Departamento departamento)
+        public IHttpActionResult Post([FromBody] Departamento departamento)
         {
             Departamento d = new Departamento();
-            d.Inserir(departamento);
-            return d.ListarDepartamentos();
+            var listaDepartamentos = d.ListarDepartamentos();
+            var itemIndex = listaDepartamentos.FindIndex(p => p.Id == departamento.Id);
+            if (itemIndex < 0)
+            {
+                return ResponseMessage(Request.CreateResponse<Departamento>(HttpStatusCode.OK, d.Inserir(departamento)));
+            }
+            else
+            {
+                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Id já cadastrado para outro departamento."));
+            }
         }
+
 
         // PUT: api/Departamento/id (Com tratamento de exceção)
         public IHttpActionResult Put(int id, [FromBody] Departamento departamento)
