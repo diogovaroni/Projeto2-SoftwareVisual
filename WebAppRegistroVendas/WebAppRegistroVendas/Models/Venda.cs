@@ -14,8 +14,9 @@ namespace WebAppRegistroVendas.Models
     {
         public int Id { get; set; }
         public double Valor { get; set; }
-        public String NomeVendedor { get; set; }
-        public String NomeDepartamento { get; set; }
+        public int IdVendedor { get; set; }
+        public int IdDepartamento { get; set; }
+     
 
 
 
@@ -45,6 +46,17 @@ namespace WebAppRegistroVendas.Models
 
         public Venda Inserir(Venda venda)
         {
+            Vendedor v = new Vendedor();
+            var listaVendedores = v.ListarVendedores();
+            var itemIndex = listaVendedores.FindIndex(p => p.Id == venda.IdVendedor);
+            if (itemIndex < 0)
+            {
+                
+                return null;
+            }
+
+            //TODO Departamento
+            
             var listaVendas = this.ListarVendas();
             listaVendas.Add(venda);
             ReescreverArquivo(listaVendas);
