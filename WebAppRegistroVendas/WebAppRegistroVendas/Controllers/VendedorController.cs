@@ -33,17 +33,6 @@ namespace WebAppRegistroVendas.Controllers
             }
         }
 
-        /*
-        // POST: api/Vendedor
-        public List<Vendedor> Post(Vendedor vendedor)
-        {
-            //TODO igual venda.ID na classe vendas
-            Vendedor v = new Vendedor();
-
-            v.Inserir(vendedor);
-            return v.ListarVendedores();
-        }
-        */
 
         // POST: api/Vendedor
         public IHttpActionResult Post([FromBody] Vendedor vendedor)
@@ -59,17 +48,6 @@ namespace WebAppRegistroVendas.Controllers
             {
                 return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Id já cadastrado para outro vendedor."));
             }
-
-            /*Vendedor v = new Vendedor().ListarVendedores().Where(x => x.Id == vendedor.Id).FirstOrDefault();
-
-            if (v != null)
-            {
-                return ResponseMessage(Request.CreateResponse<Vendedor>(HttpStatusCode.OK, v.Inserir(vendedor)));
-            }
-            else
-            {
-                return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Id já cadastrado para outro vendedor."));
-            }*/
         }
 
 
