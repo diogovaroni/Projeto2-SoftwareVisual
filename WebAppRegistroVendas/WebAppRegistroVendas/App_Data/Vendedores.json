@@ -2,22 +2,8 @@
   {
     "Id": 1,
     "Nome": "José",
-    "CPF": "000222",
+    "CPF": "000111",
     "Email": "jose@gmail.com",
-    "BaseSalarial": 2000.0
-  },
-  {
-    "Id": 2,
-    "Nome": "João",
-    "CPF": "000333",
-    "Email": "joao@gmail.com",
-    "BaseSalarial": 2000.0
-  },
-  {
-    "Id": 3,
-    "Nome": "João",
-    "CPF": "000333",
-    "Email": "joao@gmail.com",
     "BaseSalarial": 2000.0
   }
 ]
