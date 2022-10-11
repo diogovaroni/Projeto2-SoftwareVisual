@@ -10,6 +10,7 @@ namespace WebAppRegistroVendas.Models
 {
     public class Vendedor
     {
+        // RECOMEÇAR DAQUI
         public int Id { get; set; }
         public String Nome { get; set; }
         public String CPF { get; set; }
@@ -36,7 +37,7 @@ namespace WebAppRegistroVendas.Models
             File.WriteAllText(caminhoArquivo, json);
 
             return true;
-        }
+        }       
 
         public Vendedor Inserir(Vendedor vendedor)
         {

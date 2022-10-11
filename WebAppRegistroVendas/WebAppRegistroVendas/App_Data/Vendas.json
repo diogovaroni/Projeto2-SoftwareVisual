@@ -1,8 +1,14 @@
-﻿[
+[
   {
     "Id": 1,
-    "Valor": 2500.0,
-    "NomeVendedor": "Diogo",
+    "Valor": 5000.0,
+    "IdVendedor": 1,
+    "NomeDepartamento": "Informática"
+  },
+  {
+    "Id": 1,
+    "Valor": 5000.0,
+    "IdVendedor": 2,
     "NomeDepartamento": "Informática"
   }
 ]

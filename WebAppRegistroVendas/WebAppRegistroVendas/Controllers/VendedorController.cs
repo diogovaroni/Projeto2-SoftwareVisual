@@ -36,7 +36,9 @@ namespace WebAppRegistroVendas.Controllers
         // POST: api/Vendedor
         public List<Vendedor> Post(Vendedor vendedor)
         {
+            //TODO igual venda.ID na classe vendas
             Vendedor v = new Vendedor();
+
             v.Inserir(vendedor);
             return v.ListarVendedores();
         }
