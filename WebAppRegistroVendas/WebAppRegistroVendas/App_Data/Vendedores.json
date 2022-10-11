@@ -1,9 +1,16 @@
 [
   {
     "Id": 1,
-    "Nome": "Jos�",
+    "Nome": "José",
     "CPF": "000222",
     "Email": "jose@gmail.com",
+    "BaseSalarial": 2000.0
+  },
+  {
+    "Id": 2,
+    "Nome": "João",
+    "CPF": "000333",
+    "Email": "joao@gmail.com",
     "BaseSalarial": 2000.0
   }
 ]
