@@ -33,13 +33,14 @@ namespace WebAppRegistroVendas.Controllers
             }
         }
 
-
         // POST: api/Vendedor
         public IHttpActionResult Post([FromBody] Vendedor vendedor)
         {
             Vendedor v = new Vendedor();
+
             var listaVendedores = v.ListarVendedores();
             var itemIndex = listaVendedores.FindIndex(p => p.Id == vendedor.Id);
+
             if (itemIndex < 0)
             {
                 return ResponseMessage(Request.CreateResponse<Vendedor>(HttpStatusCode.OK, v.Inserir(vendedor)));
@@ -50,11 +51,11 @@ namespace WebAppRegistroVendas.Controllers
             }
         }
 
-
         // PUT: api/Vendedor/id (Com tratamento de exceção)
         public IHttpActionResult Put(int id, [FromBody] Vendedor vendedor)
         {
             Vendedor v = new Vendedor().ListarVendedores().Where(x => x.Id == id).FirstOrDefault();
+
             if (v != null)
             {
                 return ResponseMessage(Request.CreateResponse<Vendedor>(HttpStatusCode.OK, v.Atualizar(id, vendedor)));
@@ -79,8 +80,6 @@ namespace WebAppRegistroVendas.Controllers
             {
                 return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Vendedor não localizado para exclusão."));
             }
-
         }
-
     }
 }

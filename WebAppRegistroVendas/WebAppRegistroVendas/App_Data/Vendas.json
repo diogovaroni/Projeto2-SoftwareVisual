@@ -40,5 +40,11 @@
     "Valor": 3000.0,
     "IdVendedor": 1,
     "IdDepartamento": 2
+  },
+  {
+    "Id": 10,
+    "Valor": 3000.0,
+    "IdVendedor": 1,
+    "IdDepartamento": 2
   }
 ]

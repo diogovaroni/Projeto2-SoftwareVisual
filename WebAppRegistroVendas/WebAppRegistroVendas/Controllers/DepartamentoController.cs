@@ -39,6 +39,7 @@ namespace WebAppRegistroVendas.Controllers
             Departamento d = new Departamento();
             var listaDepartamentos = d.ListarDepartamentos();
             var itemIndex = listaDepartamentos.FindIndex(p => p.Id == departamento.Id);
+
             if (itemIndex < 0)
             {
                 return ResponseMessage(Request.CreateResponse<Departamento>(HttpStatusCode.OK, d.Inserir(departamento)));
@@ -49,11 +50,11 @@ namespace WebAppRegistroVendas.Controllers
             }
         }
 
-
         // PUT: api/Departamento/id (Com tratamento de exceção)
         public IHttpActionResult Put(int id, [FromBody] Departamento departamento)
         {
             Departamento d = new Departamento().ListarDepartamentos().Where(x => x.Id == id).FirstOrDefault();
+
             if (d != null)
             {
                 return ResponseMessage(Request.CreateResponse<Departamento>(HttpStatusCode.OK, d.Atualizar(id, departamento)));
@@ -63,7 +64,6 @@ namespace WebAppRegistroVendas.Controllers
                 return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Departamento não localizado para atualizar."));
             }
         }
-
 
         // DELETE: api/Vendedor/id (Com tratamento de exceção)
         public IHttpActionResult Delete(int id)
@@ -80,6 +80,5 @@ namespace WebAppRegistroVendas.Controllers
                 return ResponseMessage(Request.CreateResponse<string>(HttpStatusCode.NotFound, "Departamento não localizado para exclusão."));
             }
         }
-
     }
 }
