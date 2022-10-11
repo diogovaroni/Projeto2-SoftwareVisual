@@ -16,9 +16,6 @@ namespace WebAppRegistroVendas.Models
         public double Valor { get; set; }
         public int IdVendedor { get; set; }
         public int IdDepartamento { get; set; }
-     
-
-
 
 
         public List<Venda> ListarVendas()
@@ -30,8 +27,6 @@ namespace WebAppRegistroVendas.Models
             var listaVendas = JsonConvert.DeserializeObject<List<Venda>>(json);
             return listaVendas;
         }
-
-
 
         public bool ReescreverArquivo(List<Venda> listaVendas)
         {
@@ -63,14 +58,11 @@ namespace WebAppRegistroVendas.Models
                 return null;
             }
 
-          
-
             var listaVendas = this.ListarVendas();
             listaVendas.Add(venda);
             ReescreverArquivo(listaVendas);
             return venda;
         }
-
 
         public Venda Atualizar(int Id, Venda venda)
         {

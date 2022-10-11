@@ -12,5 +12,12 @@
     "CPF": "000333",
     "Email": "joao@gmail.com",
     "BaseSalarial": 2000.0
+  },
+  {
+    "Id": 3,
+    "Nome": "João",
+    "CPF": "000333",
+    "Email": "joao@gmail.com",
+    "BaseSalarial": 2000.0
   }
 ]
