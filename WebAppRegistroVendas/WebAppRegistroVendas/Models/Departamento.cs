@@ -13,12 +13,10 @@ namespace WebAppRegistroVendas.Models
         public int Id { get; set; }
         public String Nome { get; set; }
 
-
-
         public List<Departamento> ListarDepartamentos()
         {
             var caminhoArquivo = HostingEnvironment.MapPath(@"~\App_Data\Departamentos.json");
-
+            
             var json = File.ReadAllText(caminhoArquivo);
 
             var listaDepartamentos = JsonConvert.DeserializeObject<List<Departamento>>(json);
@@ -30,30 +28,25 @@ namespace WebAppRegistroVendas.Models
             var caminhoArquivo = HostingEnvironment.MapPath(@"~\App_Data\Departamentos.json");
 
             var json = JsonConvert.SerializeObject(listaDepartamentos, Formatting.Indented);
+            
             File.WriteAllText(caminhoArquivo, json);
-
             return true;
         }
-
-
 
         public Departamento Inserir(Departamento departamento)
         {
             var listaDepartamentos = this.ListarDepartamentos();
 
             listaDepartamentos.Add(departamento);
-
             ReescreverArquivo(listaDepartamentos);
             return departamento;
         }
 
-
-
         public Departamento Atualizar(int Id, Departamento departamento)
         {
             var listaDepartamento = this.ListarDepartamentos();
-
             var itemIndex = ListarDepartamentos().FindIndex(p => p.Id == Id);
+
             if (itemIndex >= 0)
             {
                 departamento.Id = Id;
@@ -70,8 +63,8 @@ namespace WebAppRegistroVendas.Models
         public bool Deletar(int Id)
         {
             var listaDepartamentos = this.ListarDepartamentos();
-
             var itemIndex = listaDepartamentos.FindIndex(p => p.Id == Id);
+
             if (itemIndex >= 0)
             {
                 listaDepartamentos.RemoveAt(itemIndex);
@@ -80,11 +73,8 @@ namespace WebAppRegistroVendas.Models
             {
                 return false;
             }
-
             ReescreverArquivo(listaDepartamentos);
             return true;
         }
-
-
     }
 }

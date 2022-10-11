@@ -1,8 +1,8 @@
 [
   {
     "Id": 1,
-    "Nome": "José",
-    "CPF": "000222",
+    "Nome": "JosÃ©",
+    "CPF": "000111",
     "Email": "jose@gmail.com",
     "BaseSalarial": 2000.0
   }

@@ -9,15 +9,12 @@ using System.Web.Hosting;
 namespace WebAppRegistroVendas.Models
 {
     public class Vendedor
-    {
-        // RECOMEÇAR DAQUI
+    {        
         public int Id { get; set; }
         public String Nome { get; set; }
         public String CPF { get; set; }
         public String Email { get; set; }
         public double BaseSalarial { get; set; }
-
-
 
         public List<Vendedor> ListarVendedores()
         {
@@ -34,8 +31,8 @@ namespace WebAppRegistroVendas.Models
             var caminhoArquivo = HostingEnvironment.MapPath(@"~\App_Data\Vendedores.json");
 
             var json = JsonConvert.SerializeObject(listaVendedores, Formatting.Indented);
-            File.WriteAllText(caminhoArquivo, json);
 
+            File.WriteAllText(caminhoArquivo, json);
             return true;
         }       
 
@@ -54,8 +51,8 @@ namespace WebAppRegistroVendas.Models
         public Vendedor Atualizar(int Id, Vendedor vendedor)
         {
             var listaVendedores = this.ListarVendedores();
-
             var itemIndex = ListarVendedores().FindIndex(p => p.Id == Id);
+
             if (itemIndex >= 0)
             {
                 vendedor.Id = Id;
@@ -72,8 +69,8 @@ namespace WebAppRegistroVendas.Models
         public bool Deletar(int Id)
         {
             var listaVendedores = this.ListarVendedores();
-
             var itemIndex = listaVendedores.FindIndex(p => p.Id == Id);
+
             if (itemIndex >= 0)
             {
                 listaVendedores.RemoveAt(itemIndex);
@@ -82,11 +79,8 @@ namespace WebAppRegistroVendas.Models
             {
                 return false;
             }
-
             ReescreverArquivo(listaVendedores);
             return true;
         }
-
-
     }
 }
